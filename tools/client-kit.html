@@ -1,45 +1,79 @@
 <!doctype html>
 <html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>TableTap | بطاقات QR</title>
-<link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@700&family=Cairo:wght@400;600;700;800&family=El+Messiri:wght@600;700&family=Lalezar&display=swap" rel="stylesheet">
+<meta name="robots" content="noindex">
+<title>TableTap | أداة عميل جديد</title><link rel="icon" href="/assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@700&family=El+Messiri:wght@600;700&family=Lalezar&display=swap" rel="stylesheet">
 <style>
+
 *{box-sizing:border-box}
-body{margin:0;background:#efeae0;color:#1a2230;font-family:'Cairo',Tahoma,sans-serif;line-height:1.5}
-.bar{max-width:900px;margin:0 auto;padding:22px 20px 6px}
-.bar h1{font-size:26px;margin:0 0 4px}
-.bar p{margin:0 0 12px;color:#5c6470;font-size:15px}
-.ctl{display:flex;gap:10px;flex-wrap:wrap}
-.ctl input{flex:1;min-width:240px;padding:10px 12px;border:1.5px solid #cfc7b6;border-radius:10px;font:inherit;direction:ltr;background:#fff}
-.ctl button{padding:10px 18px;border:0;border-radius:10px;background:#1a2230;color:#fff;font:700 15px 'Cairo',sans-serif;cursor:pointer}
-.ctl button:focus-visible,.ctl input:focus-visible{outline:3px solid #a8703a;outline-offset:2px}
-.warn{margin-top:10px;font-size:14px;color:#8a4b12}
-.demo{max-width:900px;margin:22px auto;padding:0 20px}
-.demo h2{font-size:18px;margin:0 0 10px}
-.pair{display:flex;gap:18px;flex-wrap:wrap}
-.card{width:300px;border-radius:20px;padding:22px 20px 16px;text-align:center;display:flex;flex-direction:column;align-items:center;break-inside:avoid}
+body{margin:0;background:#fbf8f2;color:#17305a;font-family:'Cairo',Tahoma,sans-serif;line-height:1.65;-webkit-text-size-adjust:100%}
+a{color:inherit}a:focus-visible,button:focus-visible{outline:3px solid #ef9117;outline-offset:3px;border-radius:8px}
+.w{max-width:760px;margin:0 auto;padding:0 20px}
+h1,h2,p{margin:0}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:11px 22px;border-radius:99px;font-weight:700;text-decoration:none;font-size:16px}
+.btn.main{background:#17305a;color:#fff}.btn.alt{background:#fff;border:2px solid #17305a}
+.en{direction:ltr}
+.foot{text-align:center;padding:28px 20px 44px;color:#5b6b85;font-size:14px}
+
+body{background:#f1ece1}
+.w{max-width:920px;padding-top:22px;padding-bottom:40px}
+h1{font-size:26px;margin-bottom:4px;font-weight:800}
+.sub{color:#5b6b85;margin-bottom:16px}
+.box{background:#fff;border:1.5px solid #e6dcc8;border-radius:18px;padding:18px;margin-bottom:16px}
+.box h2{font-size:18px;margin-bottom:10px}
+.presets{display:flex;gap:8px;flex-wrap:wrap}
+.presets button{padding:7px 14px;border:1.5px solid #17305a;background:#fff;border-radius:99px;font:600 14px 'Cairo',sans-serif;cursor:pointer;color:#17305a}
+.grid{display:grid;gap:12px}
+@media(min-width:700px){.grid{grid-template-columns:1fr 1fr}.full{grid-column:1/-1}}
+label{display:block;font-weight:700;font-size:14px;margin-bottom:3px}
+label small{display:block;font-weight:400;color:#6b7a94}
+input,select{width:100%;padding:10px 12px;border:1.5px solid #cfc6b2;border-radius:10px;font:inherit;background:#fff;color:#17305a}
+input.ltr{direction:ltr;text-align:left}
+.act{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+button.btn{border:0;cursor:pointer;font-family:inherit;font-size:16px}
+.msg{margin-top:10px;font-weight:700;color:#b3261e;min-height:1.4em}
+.ok{color:#17305a;font-weight:600;line-height:1.9}
+.ok code{display:block;direction:ltr;text-align:left;background:#f1ece1;padding:4px 10px;border-radius:8px;overflow-wrap:anywhere;margin:2px 0 8px}
+.pair{display:flex;gap:18px;flex-wrap:wrap;margin-top:14px}
+.card{width:300px;border-radius:20px;padding:22px 20px 16px;text-align:center;display:flex;flex-direction:column;align-items:center;break-inside:avoid;-webkit-print-color-adjust:exact;print-color-adjust:exact}
 .card .nm{font-size:34px;line-height:1.2}
-.card .en{direction:ltr;font-weight:700;font-size:17px;margin-top:2px;opacity:.95}
-.qr{background:#fff;border-radius:14px;padding:12px;margin:16px 0 12px;width:210px;height:210px;display:flex;align-items:center;justify-content:center}
+.card .en{direction:ltr;font-weight:700;font-size:17px;margin-top:2px}
+.qr{background:#fff;border-radius:14px;padding:12px;margin:16px 0 12px;width:210px;height:210px}
 .qr svg{width:100%;height:100%;display:block}
-.qr.no{color:#777;font-size:13px;line-height:1.4}
-.card .cta{font-weight:800;font-size:19px;line-height:1.35}
-.card .cta small{display:block;font-weight:600;font-size:14px;direction:ltr;opacity:.9}
-.card .ft{margin-top:14px;font-size:12px;opacity:.85;display:flex;align-items:center;gap:6px}
-.card .ft img{width:22px}
-.owner{background:#1a2230;color:#fbf9f5}
-.owner .nm{font-family:'Cairo',sans-serif;font-weight:800;font-size:26px;color:#e3b47a}
-.owner .who{font-size:15px;margin-top:4px}
-.owner .red{margin-top:8px;font-size:13px;font-weight:700;background:#a8703a;color:#fff;border-radius:99px;padding:2px 12px}
-@media print{
-  body{background:#fff}.bar .ctl,.bar p,.warn{display:none}.bar{padding-bottom:0}
-  .demo{margin:0 auto 10mm;page-break-inside:avoid}.card{-webkit-print-color-adjust:exact;print-color-adjust:exact}
-}
-</style></head><body>
-<div class="bar"><h1>بطاقات QR لـ <span dir="ltr">TableTap</span></h1>
-<p>رمز الزبون يفتح قائمة المطعم، ورمز المالك يفتح جدول الأسعار مباشرة في تطبيق جوجل شيتس.</p>
-<div class="ctl"><input id="base" type="url" placeholder="https://your-site.netlify.app/" aria-label="رابط الموقع بعد الرفع"><button id="pr">طباعة</button></div>
-<div class="warn" id="warn"></div></div>
-<div id="demos"></div>
+.cta{font-weight:800;font-size:19px;line-height:1.35}.cta small{display:block;font-weight:600;font-size:14px;direction:ltr;opacity:.9}
+.ft{margin-top:14px;font-size:12px;opacity:.9;display:flex;align-items:center;gap:6px}.ft img{width:22px;height:22px}
+.owner{background:#17305a;color:#fbf9f5}
+.owner .nm{font-weight:800;font-size:26px;color:#f6b75e}.owner .who{font-size:15px;margin-top:4px}
+.owner .red{margin-top:8px;font-size:13px;font-weight:700;background:#ef9117;color:#fff;border-radius:99px;padding:2px 12px}
+#result{display:none}
+@media print{body{background:#fff}.noprint{display:none!important}.box{border:0;padding:0}.w{padding:0}}
+</style></head><body><div class="w">
+<div class="noprint">
+<h1>أداة عميل جديد</h1>
+<p class="sub">تولّد ملف القائمة ورمزي QR (للزبون وللمالك) وبطاقات جاهزة للطباعة.</p>
+<div class="box"><h2>تعبئة سريعة للعروض التجريبية</h2><div class="presets" id="presets"></div></div>
+<div class="box"><h2>بيانات العميل</h2>
+<div class="grid">
+<div><label for="folder">اسم المجلد<small>إنجليزي صغير بدون مسافات، مثل yasmine. لا يتغير بعد الطباعة.</small></label><input class="ltr" id="folder" placeholder="yasmine" autocomplete="off"></div>
+<div><label for="theme">نمط التصميم</label><select id="theme"><option value="cafe">مقهى – داكن</option><option value="restaurant">مطعم – ساطع</option><option value="bakery">مخبز وعصائر – ناعم</option></select></div>
+<div><label for="ar">الاسم بالعربي</label><input id="ar"></div>
+<div><label for="en">الاسم بالإنجليزي</label><input class="ltr" id="en"></div>
+<div class="full"><label for="tag">وصف قصير (اختياري)</label><input id="tag"></div>
+<div class="full"><label for="sheet">رابط جدول Google<small>افتح تبويب «القائمة» وانسخ العنوان من المتصفح (يجب أن يحتوي على #gid=)</small></label><input class="ltr" id="sheet" placeholder="https://docs.google.com/spreadsheets/d/…/edit#gid=…"></div>
+<div class="full"><label for="base">عنوان الموقع</label><input class="ltr" id="base" value="https://tabletapmenu.github.io"></div>
+</div>
+<div class="act"><button class="btn main" id="go">توليد</button></div>
+<div class="msg" id="msg" role="alert"></div></div>
+</div>
+<div id="result" class="box">
+<div class="noprint">
+<p class="ok" id="info"></p>
+<div class="act"><button class="btn main" id="dlMenu">تحميل ملف القائمة (index.html)</button><button class="btn alt" id="dlC">QR الزبون (PNG)</button><button class="btn alt" id="dlO">QR المالك (PNG)</button><button class="btn alt" id="pr">طباعة البطاقات</button></div>
+<div class="msg" id="msg2" role="alert"></div></div>
+<div class="pair" id="cards"></div>
+</div>
+</div>
 <script>//---------------------------------------------------------------------
 //
 // QR Code Generator for JavaScript
@@ -2339,25 +2373,51 @@ var qrcode = function() {
 }));
 </script>
 <script>
-var DEMOS=[{"key": "cafe", "file": "cafe.html", "ar": "قهوة ياسمين", "en": "Yasmine Coffee", "owner": "https://docs.google.com/spreadsheets/d/1IVM8Wv79Cjq3D9cjO3Kn2cIYt6Fqg_-muUE2pswy_SA/edit#gid=665184946", "bg": "#15110e", "fg": "#efe7d8", "accent": "#9db39a", "font": "'El Messiri',serif"}, {"key": "restaurant", "file": "restaurant.html", "ar": "مطعم الأصيل", "en": "Al Aseel Grill", "owner": "https://docs.google.com/spreadsheets/d/1ewALSwXFkGVCdny5B-9Wbb8xDCxNpHzAnD63hPWjah4/edit#gid=1881454082", "bg": "#e4322b", "fg": "#ffc21a", "accent": "#fff", "font": "'Lalezar',sans-serif"}, {"key": "bakery", "file": "bakery.html", "ar": "مخبز وعصائر ورد", "en": "Warda Bakery & Juice", "owner": "https://docs.google.com/spreadsheets/d/1w9wIjeTc--g_QgaaHrRHgVWmrXtlsXaS4RWe-Pxy0nE/edit#gid=836267951", "bg": "#fbd5dd", "fg": "#4b2a3d", "accent": "#c9456f", "font": "'Aref Ruqaa',serif"}];
-var base=document.getElementById('base'),host=document.getElementById('demos'),warn=document.getElementById('warn');
-if(/^https?:$/.test(location.protocol))base.value=location.href.replace(/[?#].*$/,'').replace(/[^\/]*$/,'');
-function svg(text){var q=qrcode(0,'M');q.addData(text);q.make();return q.createSvgTag({cellSize:4,margin:0,scalable:true})}
-function draw(){
-  var b=base.value.trim();if(b&&!/\/$/.test(b))b+='/';
-  warn.textContent=b?'':'اكتب رابط موقعك بعد الرفع لتظهر رموز الزبون. رموز المالك جاهزة من الآن.';
-  host.innerHTML=DEMOS.map(function(d){
-    var cq=b?svg(b+d.file):'<div class="qr no">أدخل الرابط أعلاه</div>';
-    var cust='<div class="card" style="background:'+d.bg+';color:'+d.fg+'"><div class="nm" style="font-family:'+d.font+'">'+d.ar+'</div><div class="en">'+d.en+'</div>'
-      +(b?'<div class="qr">'+cq+'</div>':cq)
-      +'<div class="cta">امسح الرمز لعرض القائمة<small>Scan to view the menu</small></div>'
-      +'<div class="ft"><img src="assets/tabletap-icon.png" alt="" style="background:#fbf9f5;border-radius:6px;padding:2px">TableTap</div></div>';
-    var own='<div class="card owner"><div class="nm">بطاقة المالك</div><div class="who">'+d.ar+'<br><span dir="ltr">'+d.en+'</span></div>'
-      +'<div class="qr">'+svg(d.owner)+'</div>'
-      +'<div class="cta">امسح لتعديل الأسعار<small>Scan to edit prices</small></div>'
-      +'<div class="red">للمالك فقط – لا تعرضها للزبائن</div>'
-      +'<div class="ft"><img src="assets/tabletap-icon.png" alt="" style="background:#fbf9f5;border-radius:6px;padding:2px">TableTap</div></div>';
-    return '<section class="demo"><h2>'+d.ar+' – '+d.en+'</h2><div class="pair">'+cust+own+'</div></section>'}).join('');
-}
-base.addEventListener('input',draw);document.getElementById('pr').onclick=function(){window.print()};draw();
+var THEMES={cafe:{bg:'#15110e',fg:'#efe7d8',font:"'El Messiri',serif"},restaurant:{bg:'#e4322b',fg:'#ffc21a',font:"'Lalezar',sans-serif"},bakery:{bg:'#fbd5dd',fg:'#4b2a3d',font:"'Aref Ruqaa',serif"}};
+var PRESETS={"cafe": {"folder": "demo/cafe", "theme": "cafe", "ar": "قهوة ياسمين", "en": "Yasmine Coffee", "tag": "قهوة مختصة وحلويات طازجة", "sheet": "https://docs.google.com/spreadsheets/d/1IVM8Wv79Cjq3D9cjO3Kn2cIYt6Fqg_-muUE2pswy_SA/edit#gid=665184946"}, "restaurant": {"folder": "demo/restaurant", "theme": "restaurant", "ar": "مطعم الأصيل", "en": "Al Aseel Grill", "tag": "شاورما • برغر • مشاوي", "sheet": "https://docs.google.com/spreadsheets/d/1ewALSwXFkGVCdny5B-9Wbb8xDCxNpHzAnD63hPWjah4/edit#gid=1881454082"}, "bakery": {"folder": "demo/bakery", "theme": "bakery", "ar": "مخبز وعصائر ورد", "en": "Warda Bakery & Juice", "tag": "مخبوزات طازجة وعصائر طبيعية", "sheet": "https://docs.google.com/spreadsheets/d/1w9wIjeTc--g_QgaaHrRHgVWmrXtlsXaS4RWe-Pxy0nE/edit#gid=836267951"}};
+var $=function(i){return document.getElementById(i)};
+function h(tag,cls,txt){var e=document.createElement(tag);if(cls)e.className=cls;if(txt!=null)e.textContent=txt;return e}
+function parseSheet(u){var m=(u||'').match(/\/d\/([\w-]+)/),g=(u||'').match(/[#&?]gid=(\d+)/);return m?{id:m[1],gid:g?g[1]:'0'}:null}
+function mkQR(t){var q=qrcode(0,'M');q.addData(t);q.make();return q}
+function svgOf(t){return mkQR(t).createSvgTag({cellSize:4,margin:0,scalable:true})}
+function download(blob,name){var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(a.href);a.remove()},600)}
+function pngOf(t,name){var q=mkQR(t),n=q.getModuleCount(),cs=14,m=4,S=(n+2*m)*cs,c=document.createElement('canvas');c.width=c.height=S;var x=c.getContext('2d');x.fillStyle='#fff';x.fillRect(0,0,S,S);x.fillStyle='#000';
+  for(var r=0;r<n;r++)for(var k=0;k<n;k++)if(q.isDark(r,k))x.fillRect((k+m)*cs,(r+m)*cs,cs,cs);
+  c.toBlob(function(b){download(b,name)})}
+var cur=null;
+Object.keys(PRESETS).forEach(function(k){var b=h('button','',PRESETS[k].ar);b.type='button';b.onclick=function(){var p=PRESETS[k];['folder','theme','ar','en','tag','sheet'].forEach(function(f){$(f).value=p[f]});generate()};$('presets').appendChild(b)});
+function card(kind,c,T,url){
+  var d=h('div','card'+(kind==='owner'?' owner':''));
+  if(kind==='owner'){d.appendChild(h('div','nm','بطاقة المالك'));var w=h('div','who',c.ar);w.appendChild(document.createElement('br'));var e=h('span','',c.en);e.dir='ltr';w.appendChild(e);d.appendChild(w)}
+  else{d.style.background=T.bg;d.style.color=T.fg;var n=h('div','nm',c.ar);n.style.fontFamily=T.font;d.appendChild(n);d.appendChild(h('div','en',c.en))}
+  var q=h('div','qr');q.innerHTML=svgOf(url);d.appendChild(q);
+  var cta=h('div','cta',kind==='owner'?'امسح لتعديل الأسعار':'امسح الرمز لعرض القائمة');cta.appendChild(h('small','',kind==='owner'?'Scan to edit prices':'Scan to view the menu'));d.appendChild(cta);
+  if(kind==='owner')d.appendChild(h('div','red','للمالك فقط – لا تعرضها للزبائن'));
+  var ft=h('div','ft'),im=document.createElement('img');im.src='/assets/tabletap-badge.png';im.alt='';ft.appendChild(im);ft.appendChild(h('span','','TableTap'));d.appendChild(ft);return d}
+function generate(){
+  var f=$('folder').value.trim().replace(/^\/+|\/+$/g,'').toLowerCase(),sh=parseSheet($('sheet').value),base=$('base').value.trim().replace(/\/+$/,''),ar=$('ar').value.trim(),en=$('en').value.trim(),msg=$('msg');
+  msg.textContent='';$('msg2').textContent='';
+  if(!/^[a-z0-9][a-z0-9\-\/]*$/.test(f)){msg.textContent='اسم المجلد: أحرف إنجليزية صغيرة وأرقام وشرطة فقط.';return}
+  if(!ar){msg.textContent='اكتب الاسم بالعربي.';return}
+  if(!sh){msg.textContent='رابط الجدول غير صحيح. انسخه من شريط العنوان وهو مفتوح على تبويب «القائمة».';return}
+  if(!/^https?:\/\//.test(base)){msg.textContent='عنوان الموقع يجب أن يبدأ بـ https://';return}
+  var T=THEMES[$('theme').value],cust=base+'/'+f+'/',own='https://docs.google.com/spreadsheets/d/'+sh.id+'/edit#gid='+sh.gid;
+  cur={folder:f,theme:$('theme').value,ar:ar,en:en,tag:$('tag').value.trim(),sheetId:sh.id,gid:Number(sh.gid),cust:cust,own:own};
+  var c={ar:ar,en:en||''};var box=$('cards');box.textContent='';box.appendChild(card('cust',c,T,cust));box.appendChild(card('owner',c,T,own));
+  var info=$('info');info.textContent='';
+  info.appendChild(document.createTextNode('رابط الزبون: '));var a=h('code','',cust);info.appendChild(a);
+  info.appendChild(document.createElement('br'));info.appendChild(document.createTextNode('مكان الملف في المستودع: '));info.appendChild(h('code','',f+'/index.html'));
+  $('result').style.display='block';$('result').scrollIntoView({behavior:'smooth',block:'start'})}
+$('go').onclick=generate;
+$('pr').onclick=function(){window.print()};
+$('dlC').onclick=function(){if(cur)pngOf(cur.cust,'qr-customer-'+cur.folder.replace(/\//g,'-')+'.png')};
+$('dlO').onclick=function(){if(cur)pngOf(cur.own,'qr-owner-'+cur.folder.replace(/\//g,'-')+'.png')};
+function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;')}
+$('dlMenu').onclick=function(){
+  if(!cur)return;var m=$('msg2');m.textContent='';
+  fetch('../demo/'+cur.theme+'/index.html',{cache:'no-store'}).then(function(r){if(!r.ok)throw 0;return r.text()}).then(function(t){
+    var cfg=JSON.stringify({id:cur.folder.replace(/\//g,'-'),ar:cur.ar,en:cur.en,tag:cur.tag,sheetId:cur.sheetId,gid:cur.gid,fallback:[]}).replace(/</g,'\\u003c');
+    var out=t.replace(/(<script id="tt-config" type="application\/json">)[\s\S]*?(<\/script>)/,function(_,a,b){return a+cfg+b}).replace(/<title>[\s\S]*?<\/title>/,function(){return '<title>'+esc(cur.ar+(cur.en?' | '+cur.en:''))+'</title>'});
+    download(new Blob([out],{type:'text/html'}),'index.html')
+  }).catch(function(){m.textContent='تعذّر تحميل القالب. افتح هذه الأداة من الموقع المنشور (وليس من ملف على الحاسوب).'})};
 </script></body></html>

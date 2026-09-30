@@ -1,31 +1,64 @@
 <!doctype html>
 <html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>TableTap | قوائم رقمية</title><meta name="theme-color" content="#fbf9f5">
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+<title>TableTap | قوائم رقمية للمطاعم والمقاهي</title>
+<meta name="description" content="قائمة رقمية برمز QR لمطعمك أو مقهاك، وتعدّل الأسعار بنفسك من هاتفك.">
+<meta name="theme-color" content="#fbf8f2"><link rel="icon" href="/assets/favicon.png">
+<meta property="og:title" content="TableTap – Digital Menus for Dining &amp; Coffee"><meta property="og:description" content="قوائم رقمية برمز QR – تعدّل أسعارك بنفسك.">
+<meta property="og:image" content="https://tabletapmenu.github.io/assets/og-cover.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:type" content="website"><meta property="og:url" content="https://tabletapmenu.github.io/">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
-*{box-sizing:border-box}body{margin:0;background:#fbf9f5;color:#1a2230;font-family:'Cairo',Tahoma,sans-serif;line-height:1.6}
-.w{max-width:720px;margin:0 auto;padding:28px 20px 48px}
-.logo{display:block;width:min(260px,70%);margin:0 auto 6px}
-h1{font-size:clamp(26px,7vw,36px);text-align:center;line-height:1.3;margin:6px 0 8px}
-.lead{text-align:center;color:#5c6470;margin:0 auto 26px;max-width:32em}
-.grid{display:grid;gap:14px}
-a.t{display:flex;align-items:stretch;text-decoration:none;color:inherit;background:#fff;border:1.5px solid #e6e0d4;border-radius:18px;overflow:hidden}
-a.t:focus-visible{outline:3px solid #a8703a;outline-offset:3px}
-.sw{width:78px;flex:none;display:flex;align-items:center;justify-content:center;font-size:32px}
-.tx{padding:14px 16px;flex:1}
-.tx b{display:block;font-size:20px}.tx span{color:#5c6470;font-size:14px}
-.en{direction:ltr;text-align:start;font-weight:600;color:#a8703a;font-size:15px}
-.go{align-self:center;padding-inline:16px;font-weight:800;color:#a8703a}
-.note{margin-top:26px;padding:16px 18px;background:#f2ebdd;border-radius:14px;font-size:15px}
-.note a{color:#1a2230;font-weight:700}
-</style></head><body><div class="w">
-<img class="logo" src="assets/tabletap-logo.png" alt="TableTap">
-<h1>قائمتك على هاتف زبونك، وأسعارك بيدك</h1>
-<p class="lead">اختر نموذجاً لتشاهد شكل القائمة عند الزبون. والمالك يعدّل الأسعار بنفسه من هاتفه خلال ثوانٍ.</p>
-<div class="grid">
-<a class="t" href="cafe.html"><div class="sw" style="background:#15110e">☕</div><div class="tx"><b>قهوة ياسمين</b><span class="en" lang="en">Yasmine Coffee</span><span>مقهى – تصميم داكن عصري</span></div><div class="go">عرض</div></a>
-<a class="t" href="restaurant.html"><div class="sw" style="background:#e4322b">🍔</div><div class="tx"><b>مطعم الأصيل</b><span class="en" lang="en">Al Aseel Grill</span><span>مطعم ووجبات سريعة – تصميم مشرق</span></div><div class="go">عرض</div></a>
-<a class="t" href="bakery.html"><div class="sw" style="background:#fbd5dd">🥐</div><div class="tx"><b>مخبز وعصائر ورد</b><span class="en" lang="en">Warda Bakery &amp; Juice</span><span>مخبز وعصائر – تصميم ناعم وملوّن</span></div><div class="go">عرض</div></a>
+*{box-sizing:border-box}
+body{margin:0;background:#fbf8f2;color:#17305a;font-family:'Cairo',Tahoma,sans-serif;line-height:1.65;-webkit-text-size-adjust:100%}
+a{color:inherit}a:focus-visible,button:focus-visible{outline:3px solid #ef9117;outline-offset:3px;border-radius:8px}
+.w{max-width:760px;margin:0 auto;padding:0 20px}
+h1,h2,p{margin:0}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:11px 22px;border-radius:99px;font-weight:700;text-decoration:none;font-size:16px}
+.btn.main{background:#17305a;color:#fff}.btn.alt{background:#fff;border:2px solid #17305a}
+.en{direction:ltr}
+.foot{text-align:center;padding:28px 20px 44px;color:#5b6b85;font-size:14px}
+
+.cover{display:block;width:100%;height:clamp(220px,46vw,420px);object-fit:cover;object-position:50% 38%}
+.intro{text-align:center;padding:34px 0 10px}
+.intro h1{font-size:clamp(28px,7vw,40px);line-height:1.35;font-weight:800}
+.intro p{margin:12px auto 0;max-width:30em;color:#46597a;font-size:18px}
+.feat{display:grid;gap:12px;margin:28px 0}
+@media(min-width:640px){.feat{grid-template-columns:repeat(3,1fr)}}
+.f{background:#fff;border:1.5px solid #ece3d2;border-radius:18px;padding:18px}
+.f b{display:block;font-size:18px;margin-bottom:4px}.f span{color:#5b6b85;font-size:15px}
+h2{font-size:24px;margin:34px 0 14px}
+.demos{display:grid;gap:12px}
+a.t{display:flex;align-items:stretch;text-decoration:none;background:#fff;border:1.5px solid #ece3d2;border-radius:18px;overflow:hidden}
+.sw{width:70px;flex:none;display:flex;align-items:center;justify-content:center;font-size:30px}
+.tx{padding:12px 16px;flex:1}.tx b{display:block;font-size:19px}.tx .e{direction:ltr;text-align:start;display:block;color:#b86f0d;font-weight:600;font-size:14px}
+.go{align-self:center;padding-inline:16px;font-weight:800;color:#b86f0d}
+.contact{display:none;text-align:center;background:#17305a;color:#fff;border-radius:22px;padding:26px 18px;margin-top:34px}
+.contact h2{margin:0 0 6px;font-size:22px}.contact p{color:#cdd7ea;margin-bottom:16px}
+.contact .btn{background:#fff;color:#17305a;margin:4px}
+</style></head><body>
+<img class="cover" src="/assets/cover.jpg" alt="TableTap – Digital Menus for Dining &amp; Coffee" width="1400" height="764">
+<div class="w">
+<section class="intro"><h1>قائمتك على هاتف زبونك،<br>وأسعارك بيدك</h1>
+<p>يمسح الزبون رمز QR على الطاولة فتفتح قائمتك مباشرة. وأنت تغيّر أي سعر من هاتفك خلال ثوانٍ.</p></section>
+<section class="feat">
+<div class="f"><b>تعدّل الأسعار بنفسك</b><span>من جدول بسيط على هاتفك، وتظهر للزبائن خلال دقائق.</span></div>
+<div class="f"><b>بدون تحميل تطبيق</b><span>الزبون يمسح الرمز بكاميرا هاتفه وتفتح القائمة.</span></div>
+<div class="f"><b>تصميم يناسب مكانك</b><span>أنماط مختلفة للمقاهي والمطاعم والمخابز.</span></div>
+</section>
+<h2>جرّب بنفسك</h2>
+<div class="demos">
+<a class="t" href="/demo/cafe/"><div class="sw" style="background:#15110e">☕</div><div class="tx"><b>قهوة ياسمين</b><span class="e" lang="en">Yasmine Coffee</span></div><div class="go">عرض</div></a>
+<a class="t" href="/demo/restaurant/"><div class="sw" style="background:#e4322b">🍔</div><div class="tx"><b>مطعم الأصيل</b><span class="e" lang="en">Al Aseel Grill</span></div><div class="go">عرض</div></a>
+<a class="t" href="/demo/bakery/"><div class="sw" style="background:#fbd5dd">🥐</div><div class="tx"><b>مخبز وعصائر ورد</b><span class="e" lang="en">Warda Bakery &amp; Juice</span></div><div class="go">عرض</div></a>
 </div>
-<div class="note">رموز QR الجاهزة للطباعة (رمز للزبون ورمز للمالك) في <a href="cards.html">صفحة البطاقات</a>.</div>
-</div></body></html>
+<section class="contact" id="contact"><h2>تواصل معنا</h2><p>أرسل لنا قائمة مطعمك ونجهّزها لك خلال أيام.</p><div id="links"></div></section>
+</div>
+<footer class="foot">TableTap · Digital Menus for Dining &amp; Coffee</footer>
+<script>
+/* Fill these in: a full Facebook page link, and a WhatsApp number with country code (e.g. 963XXXXXXXXX) */
+var CONTACT={facebook:'',whatsapp:''};
+(function(){var box=document.getElementById('links'),n=0;
+function add(href,txt){var a=document.createElement('a');a.className='btn';a.href=href;a.target='_blank';a.rel='noopener';a.textContent=txt;box.appendChild(a);n++}
+if(CONTACT.facebook)add(CONTACT.facebook,'Facebook');
+if(CONTACT.whatsapp){var w=String(CONTACT.whatsapp).replace(/[^\d]/g,'');if(w)add('https://wa.me/'+w,'WhatsApp')}
+if(n)document.getElementById('contact').style.display='block'})();
+</script></body></html>

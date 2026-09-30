@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>مطعم الأصيل | Al Aseel Grill</title>
+<meta name="theme-color" content="#e4322b">
+<link rel="icon" href="/assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Lalezar&family=Lilita+One&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;-webkit-text-size-adjust:100%}
+ul{list-style:none;margin:0;padding:0}
+h1,h2,p{margin:0}
+a:focus-visible{outline:3px solid var(--focus);outline-offset:3px;border-radius:6px}
+.cats{position:sticky;top:0;z-index:10}
+.cats-in{display:flex;gap:8px;overflow-x:auto;padding:10px 16px;scrollbar-width:none;max-width:760px;margin:0 auto}
+.cats-in::-webkit-scrollbar{display:none}
+.cats-in a{flex:none;text-decoration:none;white-space:nowrap}
+main{max-width:720px;margin:0 auto;padding:6px 18px 24px;min-height:40vh}
+.cat{scroll-margin-top:62px}
+.item{display:flex;gap:12px;position:relative}
+.info{flex:1;min-width:0}
+.pic img{display:block}
+.price i{font-style:normal}
+.empty{padding:60px 0;text-align:center;opacity:.6}
+.sk{height:64px;border-radius:14px;margin:14px 0;background:currentColor;opacity:.07}
+.foot{text-align:center;padding:8px 20px 40px}
+.foot p{font-size:13px;opacity:.65;margin-bottom:12px}
+.tt{display:inline-flex;align-items:center;gap:8px;background:#fbf9f5;color:#17305a;border-radius:99px;padding-block:5px;padding-inline:8px 14px;font:700 14px 'Cairo',Tahoma,sans-serif;text-decoration:none}
+.tt img{width:28px;height:auto;display:block}
+.tt b{color:#d97f0a}
+#upd{min-height:1em}
+
+:root{--red:#e4322b;--yel:#ffc21a;--ink:#1c1b1f;--focus:#1c1b1f}
+body{background:#fffdf5;color:var(--ink);font-family:'Cairo',Tahoma,sans-serif;font-size:16px;line-height:1.5}
+.hero{background:var(--red);color:#fff;text-align:center;padding:42px 20px 34px;border-bottom:8px solid var(--yel)}
+.hero h1{font-family:'Lalezar',Cairo,sans-serif;font-weight:400;font-size:clamp(46px,14vw,72px);line-height:1.1;color:var(--yel);text-shadow:3px 3px 0 var(--ink)}
+.hero .en{direction:ltr;font-family:'Lilita One',Arial,sans-serif;font-size:26px;margin-top:4px}
+.hero .sub{margin-top:10px;font-weight:700;font-size:17px}
+.cats{background:#fffdf5;border-bottom:2px solid var(--ink)}
+.cats-in a{padding:3px 14px;border:2px solid var(--ink);border-radius:99px;color:var(--ink);font-weight:700;font-size:15px}
+.cats-in a.on{background:var(--yel)}
+.cat h2{background:var(--ink);color:var(--yel);font-family:'Lalezar',Cairo,sans-serif;font-weight:400;font-size:30px;line-height:1.3;padding:6px 16px;border-radius:14px;margin:30px 0 14px;display:flex;align-items:center;gap:10px}
+.cat h2 .emo{font-size:26px}
+.items{display:grid;gap:12px}
+@media (min-width:640px){.items{grid-template-columns:1fr 1fr}}
+.item{flex-direction:column;background:#fff;border:2px solid var(--ink);border-radius:16px;padding:12px 14px;box-shadow:3px 3px 0 var(--ink);gap:8px}
+.row{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.lead{display:none}
+.name{font-weight:800;font-size:18px;line-height:1.3}
+.price{flex:none;background:var(--red);color:#fff;border-radius:99px;padding:1px 13px;font-weight:800;white-space:nowrap}
+.price i{font-size:.75em;font-weight:700;margin-inline-start:2px}
+.desc{color:#5b5760;font-size:14px;margin-top:2px}
+.pic img{width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:10px}
+.badge{display:inline-block;background:var(--ink);color:var(--yel);border-radius:8px;padding:0 8px;font-size:13px;font-weight:700;margin-inline-start:8px;vertical-align:middle}
+.soldout{background:#f1efe8;box-shadow:none;border-style:dashed}
+.soldout .name,.soldout .desc{opacity:.55}
+.soldout .price{background:#8a8790}
+</style>
+</head>
+<body>
+<header class="hero"><h1>مطعم الأصيل</h1><div class="en" lang="en" dir="ltr">Al Aseel Grill</div><p class="sub">شاورما • برغر • مشاوي</p></header>
+<nav class="cats" aria-label="فئات القائمة"><div class="cats-in" id="nav"></div></nav>
+<main id="menu" aria-live="polite"><div class="sk"></div><div class="sk"></div><div class="sk"></div></main>
+<footer class="foot"><p id="upd"></p>
+<a class="tt" href="/" aria-label="TableTap"><img src="/assets/tabletap-badge.png" alt=""><span>بواسطة <span dir="ltr">Table<b>Tap</b></span></span></a></footer>
+<script id="tt-config" type="application/json">{"id": "demo-restaurant", "ar": "مطعم الأصيل", "en": "Al Aseel Grill", "tag": "شاورما • برغر • مشاوي", "sheetId": "1ewALSwXFkGVCdny5B-9Wbb8xDCxNpHzAnD63hPWjah4", "gid": 1881454082, "fallback": [["🥙 سندويشات", "شاورما دجاج", 110, "نعم", "مع الثوم والمخلل", ""], ["🥙 سندويشات", "شاورما لحم", 140, "نعم", "مع الطحينة والبقدونس", ""], ["🥙 سندويشات", "فلافل", 50, "نعم", "مع الخضار والطحينة", ""], ["🥙 سندويشات", "سجق", 100, "نعم", "", ""], ["🍔 برغر", "برغر كلاسيك", 160, "نعم", "لحم بقري وخس وبندورة وصوص خاص", ""], ["🍔 برغر", "برغر تشيز", 180, "نعم", "مع جبنة شيدر مذابة", ""], ["🍔 برغر", "برغر دبل", 230, "نعم", "قطعتان من اللحم مع الجبنة", ""], ["🍔 برغر", "زنجر", 170, "نعم", "صدر دجاج مقرمش", ""], ["🍗 وجبات", "بروستد ربع فروج", 220, "نعم", "مع بطاطا وثوم وخبز", ""], ["🍗 وجبات", "شيش طاووق", 260, "نعم", "مع أرز وسلطة", ""], ["🍗 وجبات", "كباب مشوي", 300, "نعم", "مع بصل مشوي وبندورة", ""], ["🍗 وجبات", "مشاوي مشكلة", 450, "لا", "تكفي شخصين", ""], ["🥗 مقبلات", "حمص", 70, "نعم", "", ""], ["🥗 مقبلات", "متبل", 70, "نعم", "", ""], ["🥗 مقبلات", "فتوش", 90, "نعم", "", ""], ["🥗 مقبلات", "بطاطا مقلية", 60, "نعم", "", ""], ["🥤 مشروبات", "مشروب غازي", 35, "نعم", "", ""], ["🥤 مشروبات", "عيران", 30, "نعم", "", ""], ["🥤 مشروبات", "عصير طبيعي", 70, "نعم", "", ""], ["🥤 مشروبات", "ماء", 15, "نعم", "", ""]]}</script>
+<script>
+(function(){
+var C=JSON.parse(document.getElementById('tt-config').textContent);
+var G='https://docs.google.com/spreadsheets/d/'+C.sheetId;
+var CFG={id:C.id,sources:[G+'/gviz/tq?tqx=out:csv&gid='+C.gid,G+'/export?format=csv&gid='+C.gid]}, FALLBACK=C.fallback||[];
+var $=function(s){return document.querySelector(s)};
+(function(){var h=$('.hero h1'),e=$('.hero .en'),s=$('.hero .sub');
+  if(C.ar&&h)h.textContent=C.ar;if(C.en&&e)e.textContent=C.en;if(s)s.textContent=C.tag||'';
+  if(C.ar)document.title=C.ar+(C.en?' | '+C.en:'')})();
+function norm(s){return s==null?'':String(s).trim()}
+function parseCSV(t){var rows=[],r=[],f='',q=false;
+  for(var i=0;i<t.length;i++){var c=t[i];
+    if(q){if(c=='"'){if(t[i+1]=='"'){f+='"';i++}else q=false}else f+=c}
+    else if(c=='"')q=true;
+    else if(c==','){r.push(f);f=''}
+    else if(c=='\n'||c=='\r'){if(c=='\r'&&t[i+1]=='\n')i++;r.push(f);rows.push(r);r=[];f=''}
+    else f+=c}
+  if(f!==''||r.length){r.push(f);rows.push(r)}return rows}
+function toNum(s){s=norm(s).replace(/[\u0660-\u0669]/g,function(d){return d.charCodeAt(0)-1632}).replace(/[^\d.]/g,'');return s===''?null:Number(s)}
+function rowsToMenu(rows){
+  if(!rows.length)return[];
+  var H=rows[0].map(norm);
+  if(H.indexOf('\u0627\u0644\u0635\u0646\u0641')<0)return[];
+  function ix(n){return H.indexOf(n)}
+  var c=ix('\u0627\u0644\u0641\u0626\u0629'),n=ix('\u0627\u0644\u0635\u0646\u0641'),p=ix('\u0627\u0644\u0633\u0639\u0631'),a=ix('\u0645\u062a\u0648\u0641\u0631'),d=ix('\u0627\u0644\u0648\u0635\u0641'),ph=ix('\u0635\u0648\u0631\u0629');
+  var cats=[],cur=null;
+  rows.slice(1).forEach(function(r){
+    var name=norm(r[n]);if(!name)return;
+    var cn=(c>=0&&norm(r[c]))||(cur?cur.name:'\u0627\u0644\u0642\u0627\u0626\u0645\u0629');
+    if(!cur||cur.name!==cn){cur=cats.filter(function(x){return x.name===cn})[0];if(!cur){cur={name:cn,items:[]};cats.push(cur)}}
+    var av=!/^(\u0644\u0627|no|n|0|false|x)$/i.test(norm(a>=0?r[a]:''));
+    cur.items.push({name:name,price:p>=0?toNum(r[p]):null,avail:av,desc:d>=0?norm(r[d]):'',photo:ph>=0?norm(r[ph]):''})});
+  return cats}
+function fromFallback(){return FALLBACK.length?rowsToMenu([['\u0627\u0644\u0641\u0626\u0629','\u0627\u0644\u0635\u0646\u0641','\u0627\u0644\u0633\u0639\u0631','\u0645\u062a\u0648\u0641\u0631','\u0627\u0644\u0648\u0635\u0641','\u0635\u0648\u0631\u0629']].concat(FALLBACK)):[]}
+var EMO=/^(\p{Extended_Pictographic}(?:\uFE0F|\u200D\p{Extended_Pictographic})*)\s*/u;
+function el(tag,cls,txt){var e=document.createElement(tag);if(cls)e.className=cls;if(txt!=null)e.textContent=txt;return e}
+var last='',rendered=false,io=null;
+function message(t){var nav=$('#nav'),main=$('#menu');nav.textContent='';main.textContent='';main.appendChild(el('p','empty',t))}
+function render(menu){
+  var nav=$('#nav'),main=$('#menu');nav.textContent='';main.textContent='';
+  if(io)io.disconnect();
+  if(!menu.length){message('\u0644\u0627 \u062a\u0648\u062c\u062f \u0623\u0635\u0646\u0627\u0641 \u0628\u0639\u062f');return}
+  var secs=[];
+  menu.forEach(function(cat,i){
+    var m=cat.name.match(EMO),emo=m?m[1]:'',title=m?cat.name.slice(m[0].length):cat.name;
+    var a=el('a','',title);a.href='#c'+i;a.dataset.i=i;nav.appendChild(a);
+    var sec=el('section','cat');sec.id='c'+i;
+    var h=el('h2');if(emo){var e=el('span','emo',emo);e.setAttribute('aria-hidden','true');h.appendChild(e)}h.appendChild(el('span','t',title));sec.appendChild(h);
+    var ul=el('ul','items');
+    cat.items.forEach(function(it){
+      var li=el('li','item'+(it.avail?'':' soldout'));
+      if(/^https?:\/\//i.test(it.photo)){var pic=el('div','pic'),im=document.createElement('img');im.src=it.photo;im.alt='';im.loading='lazy';im.onerror=function(){pic.remove()};pic.appendChild(im);li.appendChild(pic)}
+      var info=el('div','info'),row=el('div','row'),nm=el('span','name',it.name);
+      if(!it.avail)nm.appendChild(el('span','badge','\u0646\u0641\u062f'));
+      row.appendChild(nm);row.appendChild(el('span','lead'));
+      if(it.price!=null){var pr=el('span','price');pr.appendChild(el('b','',it.price.toLocaleString('en-US')));pr.appendChild(document.createTextNode(' '));pr.appendChild(el('i','','\u0644.\u0633'));row.appendChild(pr)}
+      info.appendChild(row);if(it.desc)info.appendChild(el('p','desc',it.desc));
+      li.appendChild(info);ul.appendChild(li)});
+    sec.appendChild(ul);main.appendChild(sec);secs.push(sec)});
+  if('IntersectionObserver' in window){
+    io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){
+      var links=nav.children;for(var k=0;k<links.length;k++)links[k].classList.toggle('on',links[k].dataset.i===en.target.id.slice(1));
+      var on=nav.querySelector('.on');if(on&&nav.scrollWidth>nav.clientWidth){var nb=nav.getBoundingClientRect(),ob=on.getBoundingClientRect();nav.scrollTo({left:nav.scrollLeft+(ob.left-nb.left)-nb.width/2+ob.width/2,behavior:'smooth'})}}})},{rootMargin:'-25% 0px -65% 0px'});
+    secs.forEach(function(s){io.observe(s)})}
+  var first=nav.firstChild;if(first)first.classList.add('on')}
+function commit(menu,live){
+  var s=JSON.stringify(menu);
+  if(s!==last){last=s;render(menu);rendered=true}
+  if(live){try{localStorage.setItem('tt:'+CFG.id,s)}catch(e){}
+    var d=new Date();$('#upd').textContent='\u0622\u062e\u0631 \u062a\u062d\u062f\u064a\u062b: '+('0'+d.getHours()).slice(-2)+':'+('0'+d.getMinutes()).slice(-2)}}
+function cached(){try{var s=localStorage.getItem('tt:'+CFG.id);return s?JSON.parse(s):null}catch(e){return null}}
+function fetchText(u){var ctl=window.AbortController?new AbortController():null,t=setTimeout(function(){ctl&&ctl.abort()},8000);
+  return fetch(u+(u.indexOf('?')>-1?'&':'?')+'_='+Date.now(),{cache:'no-store',signal:ctl?ctl.signal:undefined}).then(function(r){clearTimeout(t);if(!r.ok)throw 0;return r.text()},function(e){clearTimeout(t);throw e})}
+function refresh(){
+  return CFG.sources.reduce(function(p,u){return p.then(function(ok){if(ok)return true;
+    return fetchText(u).then(function(t){var m=rowsToMenu(parseCSV(t));if(m.length){commit(m,true);return true}return false},function(){return false})})},Promise.resolve(false))}
+var start=cached()||fromFallback();if(start.length)commit(start,false);
+refresh().then(function(ok){if(!ok&&!rendered)message('\u062a\u0639\u0630\u0651\u0631 \u062a\u062d\u0645\u064a\u0644 \u0627\u0644\u0642\u0627\u0626\u0645\u0629. \u062d\u0627\u0648\u0644 \u0645\u0631\u0629 \u0623\u062e\u0631\u0649 \u0628\u0639\u062f \u0642\u0644\u064a\u0644.')});
+setInterval(function(){if(!document.hidden)refresh()},45000);
+document.addEventListener('visibilitychange',function(){if(!document.hidden)refresh()});
+})();
+</script>
+</body>
+</html>
