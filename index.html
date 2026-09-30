@@ -69,7 +69,7 @@ fetch('/assets/site.json',{cache:'no-store'}).then(function(r){return r.json()})
   var C=S.contact||{},box=document.getElementById('links'),n=0;
   function add(href,txt){var b=link(href,txt,'btn');b.target='_blank';b.rel='noopener';box.appendChild(b);n++}
   if(C.facebook)add(C.facebook,'Facebook');
-  if(C.whatsapp){var w=String(C.whatsapp).replace(/[^\d]/g,'');if(w)add('https://wa.me/'+w,'WhatsApp')}
+  if(C.whatsapp){var w=String(C.whatsapp).trim(),href=/^https?:\/\//i.test(w)?w:(w.replace(/[^\d]/g,'')?'https://wa.me/'+w.replace(/[^\d]/g,''):'');if(href)add(href,'WhatsApp')}
   if(C.instagram)add(C.instagram,'Instagram');
   if(n)document.getElementById('contact').style.display='block'
 }).catch(function(){document.getElementById('demoList').appendChild(h('p','hint','تعذّر تحميل العروض. أعد تحميل الصفحة.'))});
