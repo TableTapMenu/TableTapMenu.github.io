@@ -24,7 +24,7 @@ button.btn{border:0;cursor:pointer;font-family:inherit;font-size:16px}
 .demo{margin:26px 0}
 .demo h2{font-size:19px;margin-bottom:10px}
 .pair{display:flex;gap:18px;flex-wrap:wrap}
-.unit{width:300px}
+.unit{width:300px;border-radius:24px;padding:4px}.unit.hl{outline:4px solid #ef9117;outline-offset:4px}
 .card{width:300px;border-radius:20px;padding:22px 20px 16px;text-align:center;display:flex;flex-direction:column;align-items:center;break-inside:avoid;-webkit-print-color-adjust:exact;print-color-adjust:exact}
 .card .nm{font-size:34px;line-height:1.2}
 .card .en{direction:ltr;font-weight:700;font-size:17px;margin-top:2px}
@@ -2348,7 +2348,6 @@ var qrcode = function() {
 </script>
 <script>
 var THEMES={cafe:{bg:'#15110e',fg:'#efe7d8',font:"'El Messiri',serif"},restaurant:{bg:'#e4322b',fg:'#ffc21a',font:"'Lalezar',sans-serif"},bakery:{bg:'#fbd5dd',fg:'#4b2a3d',font:"'Aref Ruqaa',serif"}};
-var PRESETS={"cafe": {"theme": "cafe", "ar": "قهوة ياسمين", "en": "Yasmine Coffee", "sheet": "https://docs.google.com/spreadsheets/d/1IVM8Wv79Cjq3D9cjO3Kn2cIYt6Fqg_-muUE2pswy_SA/edit#gid=665184946"}, "restaurant": {"theme": "restaurant", "ar": "مطعم الأصيل", "en": "Al Aseel Grill", "sheet": "https://docs.google.com/spreadsheets/d/1ewALSwXFkGVCdny5B-9Wbb8xDCxNpHzAnD63hPWjah4/edit#gid=1881454082"}, "bakery": {"theme": "bakery", "ar": "مخبز وعصائر ورد", "en": "Warda Bakery & Juice", "sheet": "https://docs.google.com/spreadsheets/d/1w9wIjeTc--g_QgaaHrRHgVWmrXtlsXaS4RWe-Pxy0nE/edit#gid=836267951"}};
 function h(tag,cls,txt){var e=document.createElement(tag);if(cls)e.className=cls;if(txt!=null)e.textContent=txt;return e}
 function mkQR(t){var q=qrcode(0,'M');q.addData(t);q.make();return q}
 function download(blob,name){var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(a.href);a.remove()},600)}
@@ -2364,15 +2363,18 @@ function card(kind,p,T,url){
   if(kind==='owner')d.appendChild(h('div','red','للمالك فقط – لا تعرضها للزبائن'));
   var ft=h('div','ft'),im=document.createElement('img');im.src='/assets/tabletap-badge.png';im.alt='';ft.appendChild(im);ft.appendChild(h('span','','TableTap'));d.appendChild(ft);
   var unit=h('div','unit');unit.appendChild(d);
-  var dl=h('div','dl'),b=h('button','','تحميل QR (PNG)');b.type='button';b.onclick=function(){pngOf(url,'qr-'+kind+'-'+p.theme+'.png')};dl.appendChild(b);unit.appendChild(dl);
+  var dl=h('div','dl'),b=h('button','','تحميل QR (PNG)');b.type='button';b.onclick=function(){pngOf(url,'qr-'+kind+'-'+p.id+'.png')};dl.appendChild(b);unit.appendChild(dl);
   unit.appendChild(h('div','lnk',kind==='owner'?'Sheet link':url));
   return unit}
 var host=document.getElementById('demos');
-Object.keys(PRESETS).forEach(function(k){
-  var p=PRESETS[k],sec=h('section','demo'),pair=h('div','pair');
-  sec.appendChild(h('h2','',p.ar+' – '+p.en));
-  pair.appendChild(card('customer',p,THEMES[k],location.origin+'/demo/'+k+'/'));
-  pair.appendChild(card('owner',p,THEMES[k],p.sheet));
-  sec.appendChild(pair);host.appendChild(sec)});
+fetch('/assets/site.json',{cache:'no-store'}).then(function(r){return r.json()}).then(function(S){
+  (S.demos||[]).forEach(function(p){
+    var sec=h('section','demo'),pair=h('div','pair'),T=THEMES[p.theme]||THEMES.cafe;
+    sec.appendChild(h('h2','',p.ar+' – '+p.en));
+    var u1=card('customer',p,T,location.origin+'/'+p.folder+'/');u1.id=p.id+'-customer';
+    var u2=card('owner',p,T,p.sheet);u2.id=p.id+'-owner';
+    pair.appendChild(u1);pair.appendChild(u2);sec.appendChild(pair);host.appendChild(sec)});
+  if(location.hash){var el=document.getElementById(location.hash.slice(1));if(el){el.classList.add('hl');setTimeout(function(){el.scrollIntoView({behavior:'smooth',block:'center'})},150)}}
+}).catch(function(){host.appendChild(h('p','','تعذّر تحميل العروض. أعد تحميل الصفحة.'))});
 document.getElementById('pr').onclick=function(){window.print()};
 </script></body></html>

@@ -1,0 +1,42 @@
+{
+  "contact": {
+    "facebook": "",
+    "whatsapp": "",
+    "instagram": ""
+  },
+  "demos": [
+    {
+      "id": "cafe",
+      "folder": "demo/cafe",
+      "theme": "cafe",
+      "ar": "قهوة ياسمين",
+      "en": "Yasmine Coffee",
+      "tag": "قهوة مختصة وحلويات طازجة",
+      "emoji": "☕",
+      "swatch": "#15110e",
+      "sheet": "https://docs.google.com/spreadsheets/d/1IVM8Wv79Cjq3D9cjO3Kn2cIYt6Fqg_-muUE2pswy_SA/edit#gid=665184946"
+    },
+    {
+      "id": "restaurant",
+      "folder": "demo/restaurant",
+      "theme": "restaurant",
+      "ar": "مطعم الأصيل",
+      "en": "Al Aseel Grill",
+      "tag": "شاورما • برغر • مشاوي",
+      "emoji": "🍔",
+      "swatch": "#e4322b",
+      "sheet": "https://docs.google.com/spreadsheets/d/1ewALSwXFkGVCdny5B-9Wbb8xDCxNpHzAnD63hPWjah4/edit#gid=1881454082"
+    },
+    {
+      "id": "bakery",
+      "folder": "demo/bakery",
+      "theme": "bakery",
+      "ar": "مخبز وعصائر ورد",
+      "en": "Warda Bakery & Juice",
+      "tag": "مخبوزات طازجة وعصائر طبيعية",
+      "emoji": "🥐",
+      "swatch": "#fbd5dd",
+      "sheet": "https://docs.google.com/spreadsheets/d/1w9wIjeTc--g_QgaaHrRHgVWmrXtlsXaS4RWe-Pxy0nE/edit#gid=836267951"
+    }
+  ]
+}

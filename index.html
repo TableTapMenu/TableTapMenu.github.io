@@ -7,6 +7,7 @@
 <meta property="og:image" content="https://tabletapmenu.github.io/assets/og-cover.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:type" content="website"><meta property="og:url" content="https://tabletapmenu.github.io/">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
+
 *{box-sizing:border-box}
 body{margin:0;background:#fbf8f2;color:#17305a;font-family:'Cairo',Tahoma,sans-serif;line-height:1.65;-webkit-text-size-adjust:100%}
 a{color:inherit}a:focus-visible,button:focus-visible{outline:3px solid #ef9117;outline-offset:3px;border-radius:8px}
@@ -25,14 +26,18 @@ h1,h2,p{margin:0}
 @media(min-width:640px){.feat{grid-template-columns:repeat(3,1fr)}}
 .f{background:#fff;border:1.5px solid #ece3d2;border-radius:18px;padding:18px}
 .f b{display:block;font-size:18px;margin-bottom:4px}.f span{color:#5b6b85;font-size:15px}
-h2{font-size:24px;margin:34px 0 14px}
+h2{font-size:24px;margin:34px 0 6px;scroll-margin-top:16px}
+.hint{color:#5b6b85;margin-bottom:14px;font-size:15px}
 .demos{display:grid;gap:12px}
-a.t{display:flex;align-items:stretch;text-decoration:none;background:#fff;border:1.5px solid #ece3d2;border-radius:18px;overflow:hidden}
+.t{display:flex;align-items:stretch;background:#fff;border:1.5px solid #ece3d2;border-radius:18px;overflow:hidden}
 .sw{width:70px;flex:none;display:flex;align-items:center;justify-content:center;font-size:30px}
-.tx{padding:12px 16px;flex:1}.tx b{display:block;font-size:19px}.tx .e{direction:ltr;text-align:start;display:block;color:#b86f0d;font-weight:600;font-size:14px}
-.go{align-self:center;padding-inline:16px;font-weight:800;color:#b86f0d}
+.tx{padding:12px 16px 14px;flex:1;min-width:0}.tx b{display:block;font-size:19px}.tx .e{direction:ltr;text-align:start;display:block;color:#b86f0d;font-weight:600;font-size:14px}
+.acts{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.acts a{text-decoration:none;font-weight:700;font-size:14px;padding:4px 12px;border-radius:99px;border:1.5px solid #17305a;color:#17305a}
+.acts a.p{background:#17305a;color:#fff}
+.more{margin-top:12px;text-align:center}.more a{font-weight:700;color:#b86f0d}
 .contact{display:none;text-align:center;background:#17305a;color:#fff;border-radius:22px;padding:26px 18px;margin-top:34px}
-.contact h2{margin:0 0 6px;font-size:22px}.contact p{color:#cdd7ea;margin-bottom:16px}
+.contact h2{margin:0 0 6px;font-size:22px;color:#fff}.contact p{color:#cdd7ea;margin-bottom:16px}
 .contact .btn{background:#fff;color:#17305a;margin:4px}
 </style></head><body>
 <img class="cover" src="/assets/cover.jpg" alt="TableTap – Digital Menus for Dining &amp; Coffee" width="1400" height="764">
@@ -44,21 +49,28 @@ a.t{display:flex;align-items:stretch;text-decoration:none;background:#fff;border
 <div class="f"><b>بدون تحميل تطبيق</b><span>الزبون يمسح الرمز بكاميرا هاتفه وتفتح القائمة.</span></div>
 <div class="f"><b>تصميم يناسب مكانك</b><span>أنماط مختلفة للمقاهي والمطاعم والمخابز.</span></div>
 </section>
-<h2>جرّب بنفسك</h2>
-<div class="demos">
-<a class="t" href="/demo/cafe/"><div class="sw" style="background:#15110e">☕</div><div class="tx"><b>قهوة ياسمين</b><span class="e" lang="en">Yasmine Coffee</span></div><div class="go">عرض</div></a>
-<a class="t" href="/demo/restaurant/"><div class="sw" style="background:#e4322b">🍔</div><div class="tx"><b>مطعم الأصيل</b><span class="e" lang="en">Al Aseel Grill</span></div><div class="go">عرض</div></a>
-<a class="t" href="/demo/bakery/"><div class="sw" style="background:#fbd5dd">🥐</div><div class="tx"><b>مخبز وعصائر ورد</b><span class="e" lang="en">Warda Bakery &amp; Juice</span></div><div class="go">عرض</div></a>
-</div>
+<h2 id="demos">جرّب بنفسك</h2>
+<p class="hint">افتح القائمة كما يراها الزبون، أو شاهد بطاقة الزبون (توضع على الطاولة) وبطاقة المالك (لتعديل الأسعار).</p>
+<div class="demos" id="demoList"></div>
+<p class="more"><a href="/demo/cards/">كل بطاقات QR للعروض ←</a></p>
 <section class="contact" id="contact"><h2>تواصل معنا</h2><p>أرسل لنا قائمة مطعمك ونجهّزها لك خلال أيام.</p><div id="links"></div></section>
 </div>
 <footer class="foot">TableTap · Digital Menus for Dining &amp; Coffee</footer>
 <script>
-/* Fill these in: a full Facebook page link, and a WhatsApp number with country code (e.g. 963XXXXXXXXX) */
-var CONTACT={facebook:'',whatsapp:''};
-(function(){var box=document.getElementById('links'),n=0;
-function add(href,txt){var a=document.createElement('a');a.className='btn';a.href=href;a.target='_blank';a.rel='noopener';a.textContent=txt;box.appendChild(a);n++}
-if(CONTACT.facebook)add(CONTACT.facebook,'Facebook');
-if(CONTACT.whatsapp){var w=String(CONTACT.whatsapp).replace(/[^\d]/g,'');if(w)add('https://wa.me/'+w,'WhatsApp')}
-if(n)document.getElementById('contact').style.display='block'})();
+function h(tag,cls,txt){var e=document.createElement(tag);if(cls)e.className=cls;if(txt!=null)e.textContent=txt;return e}
+function link(href,txt,cls){var a=h('a',cls||'',txt);a.href=href;return a}
+fetch('/assets/site.json',{cache:'no-store'}).then(function(r){return r.json()}).then(function(S){
+  var list=document.getElementById('demoList');
+  (S.demos||[]).forEach(function(d){
+    var t=h('div','t'),sw=h('div','sw',d.emoji||'');sw.style.background=d.swatch||'#eee';sw.setAttribute('aria-hidden','true');
+    var tx=h('div','tx');tx.appendChild(h('b','',d.ar));var e=h('span','e',d.en);e.lang='en';tx.appendChild(e);
+    var a=h('div','acts');a.appendChild(link('/'+d.folder+'/','القائمة','p'));a.appendChild(link('/demo/cards/#'+d.id+'-customer','بطاقة الزبون'));a.appendChild(link('/demo/cards/#'+d.id+'-owner','بطاقة المالك'));
+    tx.appendChild(a);t.appendChild(sw);t.appendChild(tx);list.appendChild(t)});
+  var C=S.contact||{},box=document.getElementById('links'),n=0;
+  function add(href,txt){var b=link(href,txt,'btn');b.target='_blank';b.rel='noopener';box.appendChild(b);n++}
+  if(C.facebook)add(C.facebook,'Facebook');
+  if(C.whatsapp){var w=String(C.whatsapp).replace(/[^\d]/g,'');if(w)add('https://wa.me/'+w,'WhatsApp')}
+  if(C.instagram)add(C.instagram,'Instagram');
+  if(n)document.getElementById('contact').style.display='block'
+}).catch(function(){document.getElementById('demoList').appendChild(h('p','hint','تعذّر تحميل العروض. أعد تحميل الصفحة.'))});
 </script></body></html>
