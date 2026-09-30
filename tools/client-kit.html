@@ -35,17 +35,19 @@ button.btn{border:0;cursor:pointer;font-family:inherit;font-size:16px}
 .msg{margin-top:10px;font-weight:700;color:#b3261e;min-height:1.4em}
 .ok{color:#17305a;font-weight:600;line-height:1.9}
 .ok code{display:block;direction:ltr;text-align:left;background:#f1ece1;padding:4px 10px;border-radius:8px;overflow-wrap:anywhere;margin:2px 0 8px}
-.pair{display:flex;gap:18px;flex-wrap:wrap;margin-top:14px}
-.card{width:300px;border-radius:20px;padding:22px 20px 16px;text-align:center;display:flex;flex-direction:column;align-items:center;break-inside:avoid;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.pair{display:grid;grid-template-columns:repeat(auto-fit,300px);gap:18px;justify-content:start;margin-top:14px}
+.card{width:300px;height:100%;border-radius:20px;padding:22px 20px 16px;text-align:center;display:flex;flex-direction:column;align-items:center;break-inside:avoid;-webkit-print-color-adjust:exact;print-color-adjust:exact}
 .card .nm{font-size:34px;line-height:1.2}
 .card .en{direction:ltr;font-weight:700;font-size:17px;margin-top:2px}
-.qr{background:#fff;border-radius:14px;padding:12px;margin:16px 0 12px;width:210px;height:210px}
+.hd{min-height:92px;display:flex;flex-direction:column;justify-content:center;align-items:center}
+.qr{background:#fff;border-radius:14px;padding:12px;margin:14px 0 12px;width:210px;height:210px;flex:none}
+.ex{min-height:34px;display:flex;align-items:center;justify-content:center}
 .qr svg{width:100%;height:100%;display:block}
-.cta{font-weight:800;font-size:19px;line-height:1.35}.cta small{display:block;font-weight:600;font-size:14px;direction:ltr;opacity:.9}
-.ft{margin-top:14px;font-size:12px;opacity:.9;display:flex;align-items:center;gap:6px}.ft img{width:22px;height:22px}
+.cta{font-weight:800;font-size:19px;line-height:1.35;min-height:62px}.cta small{display:block;font-weight:600;font-size:14px;direction:ltr;opacity:.9}
+.ft{margin-top:auto;padding-top:10px;font-size:12px;opacity:.9;display:flex;align-items:center;gap:6px}.ft img{width:22px;height:22px}
 .owner{background:#17305a;color:#fbf9f5}
 .owner .nm{font-weight:800;font-size:26px;color:#f6b75e}.owner .who{font-size:15px;margin-top:4px}
-.owner .red{margin-top:8px;font-size:13px;font-weight:700;background:#ef9117;color:#fff;border-radius:99px;padding:2px 12px}
+.owner .red{font-size:13px;font-weight:700;background:#ef9117;color:#fff;border-radius:99px;padding:2px 12px}
 #result{display:none}
 @media print{body{background:#fff}.noprint{display:none!important}.box{border:0;padding:0}.w{padding:0}}
 </style></head><body><div class="w">
@@ -2388,12 +2390,13 @@ var cur=null;
 fetch('/assets/site.json',{cache:'no-store'}).then(function(r){return r.json()}).then(function(S){
   (S.demos||[]).forEach(function(p){PRESETS[p.id]=p;var b=h('button','',p.ar);b.type='button';b.onclick=function(){['folder','theme','ar','en','tag','sheet'].forEach(function(f){$(f).value=p[f]||''});generate()};$('presets').appendChild(b)})}).catch(function(){});
 function card(kind,c,T,url){
-  var d=h('div','card'+(kind==='owner'?' owner':''));
-  if(kind==='owner'){d.appendChild(h('div','nm','بطاقة المالك'));var w=h('div','who',c.ar);w.appendChild(document.createElement('br'));var e=h('span','',c.en);e.dir='ltr';w.appendChild(e);d.appendChild(w)}
-  else{d.style.background=T.bg;d.style.color=T.fg;var n=h('div','nm',c.ar);n.style.fontFamily=T.font;d.appendChild(n);d.appendChild(h('div','en',c.en))}
+  var d=h('div','card'+(kind==='owner'?' owner':'')),hd=h('div','hd');
+  if(kind==='owner'){hd.appendChild(h('div','nm','بطاقة المالك'));var w=h('div','who',c.ar);w.appendChild(document.createElement('br'));var e=h('span','',c.en);e.dir='ltr';w.appendChild(e);hd.appendChild(w)}
+  else{d.style.background=T.bg;d.style.color=T.fg;var n=h('div','nm',c.ar);n.style.fontFamily=T.font;hd.appendChild(n);hd.appendChild(h('div','en',c.en))}
+  d.appendChild(hd);
   var q=h('div','qr');q.innerHTML=svgOf(url);d.appendChild(q);
   var cta=h('div','cta',kind==='owner'?'امسح لتعديل الأسعار':'امسح الرمز لعرض القائمة');cta.appendChild(h('small','',kind==='owner'?'Scan to edit prices':'Scan to view the menu'));d.appendChild(cta);
-  if(kind==='owner')d.appendChild(h('div','red','للمالك فقط – لا تعرضها للزبائن'));
+  var ex=h('div','ex');if(kind==='owner')ex.appendChild(h('div','red','للمالك فقط – لا تعرضها للزبائن'));d.appendChild(ex);
   var ft=h('div','ft'),im=document.createElement('img');im.src='/assets/tabletap-badge.png';im.alt='';ft.appendChild(im);ft.appendChild(h('span','','TableTap'));d.appendChild(ft);return d}
 function generate(){
   var f=$('folder').value.trim().replace(/^\/+|\/+$/g,'').toLowerCase(),sh=parseSheet($('sheet').value),base=$('base').value.trim().replace(/\/+$/,''),ar=$('ar').value.trim(),en=$('en').value.trim(),msg=$('msg');

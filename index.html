@@ -50,7 +50,7 @@ h2{font-size:24px;margin:34px 0 6px;scroll-margin-top:16px}
 <div class="f"><b>تصميم يناسب مكانك</b><span>أنماط مختلفة للمقاهي والمطاعم والمخابز.</span></div>
 </section>
 <h2 id="demos">جرّب بنفسك</h2>
-<p class="hint">افتح القائمة كما يراها الزبون، أو شاهد بطاقة الزبون (توضع على الطاولة) وبطاقة المالك (لتعديل الأسعار).</p>
+<p class="hint">افتح القائمة كما يراها الزبون، أو شاهد بطاقات QR (للزبون وللمالك)، أو افتح جدول الأسعار الذي يعدّله المالك.</p>
 <div class="demos" id="demoList"></div>
 <p class="more"><a href="/demo/cards/">كل بطاقات QR للعروض ←</a></p>
 <section class="contact" id="contact"><h2>تواصل معنا</h2><p>أرسل لنا قائمة مطعمك ونجهّزها لك خلال أيام.</p><div id="links"></div></section>
@@ -64,7 +64,7 @@ fetch('/assets/site.json',{cache:'no-store'}).then(function(r){return r.json()})
   (S.demos||[]).forEach(function(d){
     var t=h('div','t'),sw=h('div','sw',d.emoji||'');sw.style.background=d.swatch||'#eee';sw.setAttribute('aria-hidden','true');
     var tx=h('div','tx');tx.appendChild(h('b','',d.ar));var e=h('span','e',d.en);e.lang='en';tx.appendChild(e);
-    var a=h('div','acts');a.appendChild(link('/'+d.folder+'/','القائمة','p'));a.appendChild(link('/demo/cards/#'+d.id+'-customer','بطاقة الزبون'));a.appendChild(link('/demo/cards/#'+d.id+'-owner','بطاقة المالك'));
+    var a=h('div','acts');a.appendChild(link('/'+d.folder+'/','القائمة','p'));a.appendChild(link('/demo/cards/#'+d.id,'البطاقات'));var sl=link(d.sheet,'جدول الأسعار');sl.target='_blank';sl.rel='noopener';a.appendChild(sl);
     tx.appendChild(a);t.appendChild(sw);t.appendChild(tx);list.appendChild(t)});
   var C=S.contact||{},box=document.getElementById('links'),n=0;
   function add(href,txt){var b=link(href,txt,'btn');b.target='_blank';b.rel='noopener';box.appendChild(b);n++}

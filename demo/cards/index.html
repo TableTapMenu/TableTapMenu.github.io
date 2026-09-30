@@ -16,28 +16,32 @@ h1,h2,p{margin:0}
 .foot{text-align:center;padding:28px 20px 44px;color:#5b6b85;font-size:14px}
 
 body{background:#f1ece1}
-.w{max-width:940px;padding-top:22px;padding-bottom:40px}
+.w{max-width:680px;padding-top:22px;padding-bottom:40px}
 h1{font-size:26px;font-weight:800;margin-bottom:4px}
 .sub{color:#5b6b85;margin-bottom:14px}
 .top{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:6px}
 button.btn{border:0;cursor:pointer;font-family:inherit;font-size:16px}
-.demo{margin:26px 0}
+.demo{margin:26px 0;border-radius:26px;scroll-margin-top:16px}
+.demo.hl{outline:4px solid #ef9117;outline-offset:10px}
 .demo h2{font-size:19px;margin-bottom:10px}
-.pair{display:flex;gap:18px;flex-wrap:wrap}
-.unit{width:300px;border-radius:24px;padding:4px}.unit.hl{outline:4px solid #ef9117;outline-offset:4px}
-.card{width:300px;border-radius:20px;padding:22px 20px 16px;text-align:center;display:flex;flex-direction:column;align-items:center;break-inside:avoid;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.pair{display:grid;grid-template-columns:repeat(auto-fit,300px);gap:18px;justify-content:center}
+.unit{display:flex;flex-direction:column;width:300px}
+.card{flex:1;width:300px;border-radius:20px;padding:22px 20px 16px;text-align:center;display:flex;flex-direction:column;align-items:center;break-inside:avoid;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.hd{min-height:92px;display:flex;flex-direction:column;justify-content:center;align-items:center}
 .card .nm{font-size:34px;line-height:1.2}
 .card .en{direction:ltr;font-weight:700;font-size:17px;margin-top:2px}
-.qr{background:#fff;border-radius:14px;padding:12px;margin:16px 0 12px;width:210px;height:210px}
+.qr{background:#fff;border-radius:14px;padding:12px;margin:14px 0 12px;width:210px;height:210px;flex:none}
 .qr svg{width:100%;height:100%;display:block}
-.cta{font-weight:800;font-size:19px;line-height:1.35}.cta small{display:block;font-weight:600;font-size:14px;direction:ltr;opacity:.9}
-.ft{margin-top:14px;font-size:12px;opacity:.9;display:flex;align-items:center;gap:6px}.ft img{width:22px;height:22px}
+.cta{font-weight:800;font-size:19px;line-height:1.35;min-height:62px}.cta small{display:block;font-weight:600;font-size:14px;direction:ltr;opacity:.9}
+.ex{min-height:34px;display:flex;align-items:center;justify-content:center}
+.ft{margin-top:auto;padding-top:10px;font-size:12px;opacity:.9;display:flex;align-items:center;gap:6px}.ft img{width:22px;height:22px}
 .owner{background:#17305a;color:#fbf9f5}
-.owner .nm{font-weight:800;font-size:26px;color:#f6b75e}.owner .who{font-size:15px;margin-top:4px}
-.owner .red{margin-top:8px;font-size:13px;font-weight:700;background:#ef9117;color:#fff;border-radius:99px;padding:2px 12px}
-.dl{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
-.dl button{flex:1;padding:7px 10px;border:1.5px solid #17305a;background:#fff;border-radius:10px;font:600 13px 'Cairo',sans-serif;cursor:pointer;color:#17305a}
-.lnk{font-size:13px;color:#5b6b85;margin-top:6px;direction:ltr;text-align:left;overflow-wrap:anywhere}
+.owner .nm{font-weight:800;font-size:28px;color:#f6b75e}.owner .who{font-size:15px;margin-top:4px;line-height:1.5}
+.owner .red{font-size:13px;font-weight:700;background:#ef9117;color:#fff;border-radius:99px;padding:2px 12px}
+.dl{margin-top:8px}
+.dl button{width:100%;padding:8px 10px;border:1.5px solid #17305a;background:#fff;border-radius:10px;font:600 13px 'Cairo',sans-serif;cursor:pointer;color:#17305a}
+.lnk{display:block;margin-top:8px;min-height:2.6em;font-size:13px;direction:ltr;text-align:center;overflow-wrap:anywhere}
+.lnk a{color:#17305a;font-weight:700}
 @media print{body{background:#fff}.noprint,.dl,.lnk{display:none!important}.w{padding:0}.demo{page-break-inside:avoid}}
 </style></head><body><div class="w">
 <div class="noprint">
@@ -2354,26 +2358,27 @@ function download(blob,name){var a=document.createElement('a');a.href=URL.create
 function pngOf(t,name){var q=mkQR(t),n=q.getModuleCount(),cs=14,m=4,S=(n+2*m)*cs,c=document.createElement('canvas');c.width=c.height=S;var x=c.getContext('2d');x.fillStyle='#fff';x.fillRect(0,0,S,S);x.fillStyle='#000';
   for(var r=0;r<n;r++)for(var k=0;k<n;k++)if(q.isDark(r,k))x.fillRect((k+m)*cs,(r+m)*cs,cs,cs);
   c.toBlob(function(b){download(b,name)})}
-function card(kind,p,T,url){
-  var d=h('div','card'+(kind==='owner'?' owner':''));
-  if(kind==='owner'){d.appendChild(h('div','nm','بطاقة المالك'));var w=h('div','who',p.ar);w.appendChild(document.createElement('br'));var e=h('span','',p.en);e.dir='ltr';w.appendChild(e);d.appendChild(w)}
-  else{d.style.background=T.bg;d.style.color=T.fg;var n=h('div','nm',p.ar);n.style.fontFamily=T.font;d.appendChild(n);d.appendChild(h('div','en',p.en))}
+function card(kind,p,T,url,linkHref,linkText){
+  var d=h('div','card'+(kind==='owner'?' owner':'')),hd=h('div','hd');
+  if(kind==='owner'){hd.appendChild(h('div','nm','بطاقة المالك'));var w=h('div','who',p.ar);w.appendChild(document.createElement('br'));var e=h('span','',p.en);e.dir='ltr';w.appendChild(e);hd.appendChild(w)}
+  else{d.style.background=T.bg;d.style.color=T.fg;var n=h('div','nm',p.ar);n.style.fontFamily=T.font;hd.appendChild(n);hd.appendChild(h('div','en',p.en))}
+  d.appendChild(hd);
   var q=h('div','qr');q.innerHTML=mkQR(url).createSvgTag({cellSize:4,margin:0,scalable:true});d.appendChild(q);
   var cta=h('div','cta',kind==='owner'?'امسح لتعديل الأسعار':'امسح الرمز لعرض القائمة');cta.appendChild(h('small','',kind==='owner'?'Scan to edit prices':'Scan to view the menu'));d.appendChild(cta);
-  if(kind==='owner')d.appendChild(h('div','red','للمالك فقط – لا تعرضها للزبائن'));
+  var ex=h('div','ex');if(kind==='owner')ex.appendChild(h('div','red','للمالك فقط – لا تعرضها للزبائن'));d.appendChild(ex);
   var ft=h('div','ft'),im=document.createElement('img');im.src='/assets/tabletap-badge.png';im.alt='';ft.appendChild(im);ft.appendChild(h('span','','TableTap'));d.appendChild(ft);
   var unit=h('div','unit');unit.appendChild(d);
   var dl=h('div','dl'),b=h('button','','تحميل QR (PNG)');b.type='button';b.onclick=function(){pngOf(url,'qr-'+kind+'-'+p.id+'.png')};dl.appendChild(b);unit.appendChild(dl);
-  unit.appendChild(h('div','lnk',kind==='owner'?'Sheet link':url));
+  var lk=h('div','lnk'),a=h('a','',linkText);a.href=linkHref;a.target='_blank';a.rel='noopener';lk.appendChild(a);unit.appendChild(lk);
   return unit}
 var host=document.getElementById('demos');
 fetch('/assets/site.json',{cache:'no-store'}).then(function(r){return r.json()}).then(function(S){
   (S.demos||[]).forEach(function(p){
-    var sec=h('section','demo'),pair=h('div','pair'),T=THEMES[p.theme]||THEMES.cafe;
-    sec.appendChild(h('h2','',p.ar+' – '+p.en));
-    var u1=card('customer',p,T,location.origin+'/'+p.folder+'/');u1.id=p.id+'-customer';
-    var u2=card('owner',p,T,p.sheet);u2.id=p.id+'-owner';
-    pair.appendChild(u1);pair.appendChild(u2);sec.appendChild(pair);host.appendChild(sec)});
+    var sec=h('section','demo'),pair=h('div','pair'),T=THEMES[p.theme]||THEMES.cafe,menuUrl=location.origin+'/'+p.folder+'/';
+    sec.id=p.id;sec.appendChild(h('h2','',p.ar+' – '+p.en));
+    pair.appendChild(card('customer',p,T,menuUrl,menuUrl,menuUrl.replace(/^https?:\/\//,'')));
+    pair.appendChild(card('owner',p,T,p.sheet,p.sheet,'فتح جدول الأسعار (عرض فقط للزوّار)'));
+    sec.appendChild(pair);host.appendChild(sec)});
   if(location.hash){var el=document.getElementById(location.hash.slice(1));if(el){el.classList.add('hl');setTimeout(function(){el.scrollIntoView({behavior:'smooth',block:'center'})},150)}}
 }).catch(function(){host.appendChild(h('p','','تعذّر تحميل العروض. أعد تحميل الصفحة.'))});
 document.getElementById('pr').onclick=function(){window.print()};
