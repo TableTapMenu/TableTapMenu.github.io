@@ -4,6 +4,7 @@
 index.html               TableTap landing page (cover photo, demos, contact buttons)
 assets/                  logo badge, cover, favicon
 demo/                    public demos: demo/cafe, demo/restaurant, demo/bakery
+demo/cards/              printable QR cards (customer + owner) for the 3 demos
 tools/client-kit.html    make a new client's menu file + QR cards (open it on the live site)
 _template/index.html     blank menu page (not published, kept for reference)
 <client-name>/index.html one folder per paying client
